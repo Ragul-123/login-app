@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props) {
@@ -27,44 +27,43 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    // const loginUrl = 'http://172.24.145.65/api/login/login';
+    const loginUrl = 'http://172.24.145.65/api/login/login';
 
-    // const { email,password } = this.state;
+    const { email,password } = this.state;
 
-    // const employee = {
-    //     email,
-    //     password
-    // };
+    const employee = {
+        email,
+        password
+    };
 
-    // axios.post(loginUrl,employee)
-    // .then(response =>{
-    //  console.log(response.data);
-    //   if(response.data.Status === "Invalid"){
-    //     this.setState(
-    //       { loginStatus : response.data.Message,
-    //         isLoggedIn:false });
+    axios.post(loginUrl,employee)
+    .then(response =>{
+     console.log(response.data);
+      if(response.data.Status === "Invalid"){
+        this.setState(
+          { loginStatus : response.data.Message,
+            isLoggedIn:false });
           
-    //   }
-    //   else{
-    //   this.setState(
-    //     { loginStatus : response.data.Message,
-    //       isLoggedIn:true });
-    //     this.props.history.push(`/dashboard/${response.data.Message}`);
-    //   }
-    // });
-    this.props.history.push('/dashboard');
+      }
+      else{
+      this.setState(
+        { loginStatus : response.data.Message,
+          isLoggedIn:true });
+        this.props.history.push(`/dashboard/${response.data.Message}`);
+      }
+    });
   };
 
   render() {
-    // let {isLoggedIn} = this.state;
+    let {isLoggedIn} = this.state;
 
-    // const renderAuthButton = () => {
-    //   if (!isLoggedIn) {
-    //     return  <div>
-    //                 <h5>{this.state.loginStatus}</h5>
-    //             </div>;
-    //   }
-    // }
+    const renderAuthButton = () => {
+      if (!isLoggedIn) {
+        return  <div>
+                    <h5>{this.state.loginStatus}</h5>
+                </div>;
+      }
+    }
 
     return (
         <div className="Login">
@@ -102,7 +101,7 @@ class Login extends Component {
                         <button className="btn btn-primary" onClick={this.handleRegister}>Register</button>
                     </div>
 
-                    {/* {renderAuthButton()} */}
+                    {renderAuthButton()}
                 </form> 
             </div>
         </div>

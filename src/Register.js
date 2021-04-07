@@ -27,42 +27,42 @@ class Register extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    // const registerUrl = 'http://172.24.145.65/api/login/register';
+    const registerUrl = 'http://172.24.145.65/api/login/register';
 
-    // const { email,password } = this.state;
+    const { email,password } = this.state;
 
-    // const employee = {
-    //     email,
-    //     password
-    // };
+    const employee = {
+        email,
+        password
+    };
 
-    // axios.post(registerUrl,employee)
-    // .then(response =>{
-    //  console.log(response.data);
+    axios.post(registerUrl,employee)
+    .then(response =>{
+     console.log(response.data);
      
-    //   if(response.data.Status === "Error"){
-    //     this.setState(
-    //       { loginStatus : response.data.Message,
-    //         isLoggedIn:false });
-    //   }
-    //   else{
-    //     this.setState(
-    //       { loginStatus : response.data.Message,
-    //         isLoggedIn:true });
-    //   }
-    // });
+      if(response.data.Status === "Error"){
+        this.setState(
+          { loginStatus : response.data.Message,
+            isLoggedIn:false });
+      }
+      else{
+        this.setState(
+          { loginStatus : response.data.Message,
+            isLoggedIn:true });
+      }
+    });
   };
 
   render() {
-    // let {isLoggedIn} = this.state;
+    let {isLoggedIn} = this.state;
 
-    // const renderAuthButton = () => {
-    //   if (!isLoggedIn) {
-    //     return  <div> <h5>{this.state.loginStatus}</h5> </div>; }
+    const renderAuthButton = () => {
+      if (!isLoggedIn) {
+        return  <div> <h5>{this.state.loginStatus}</h5> </div>; }
 
-    //   else{
-    //     return  <div> <h5>{this.state.loginStatus}</h5>  </div>; }
-    // }
+      else{
+        return  <div> <h5>{this.state.loginStatus}</h5>  </div>; }
+    }
 
     return (
         <div className="Login">
